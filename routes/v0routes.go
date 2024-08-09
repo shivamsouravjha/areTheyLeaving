@@ -2,7 +2,6 @@ package routes
 
 import (
 	delete "areTheyLeaving/controllers/DELETE"
-	get "areTheyLeaving/controllers/GET"
 	post "areTheyLeaving/controllers/POST"
 
 	"github.com/gin-gonic/gin"
@@ -12,7 +11,6 @@ func v0Routes(route *gin.RouterGroup) {
 	company := route.Group("/company")
 	{
 		company.POST("/create", post.CreateCompany)
-		company.POST("/get", get.GetCompany)
 	}
 	user := route.Group("/user")
 	{
@@ -21,10 +19,16 @@ func v0Routes(route *gin.RouterGroup) {
 	}
 	employee := route.Group("/employee")
 	{
-		employee.POST("/create", post.CreateEmploye)
+		// employee.POST("/add", post.CreateEmploye)
 		employee.POST("/get", post.GetEmployee)
 		employee.POST("/delete", delete.RemoveEmploye)
 		employee.POST("/getAll", post.GetAllEmployee)
 	}
-
+	employeeData := route.Group("/employeeData")
+	{
+		// employee.POST("/add", post.CreateEmploye)
+		employeeData.POST("/get", post.GetEmployee)
+		employeeData.POST("/delete", delete.RemoveEmploye)
+		employeeData.POST("/getAll", post.GetAllEmployee)
+	}
 }

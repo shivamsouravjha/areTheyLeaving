@@ -17,7 +17,7 @@ func CreateCompany(c *gin.Context) {
 		c.JSON(422, utils.SendErrorResponse(err))
 		return
 	}
-	err := db.CreateItem(c, companyStruct, "company")
+	err := db.CreateCompany(c, companyStruct, "company")
 	if err != nil {
 		resp := responseStruct.SuccessResponse{}
 		resp.Message = err.Error()
